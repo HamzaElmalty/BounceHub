@@ -10,12 +10,12 @@ from cryptography.fernet import Fernet
 def load_or_generate_key():
     try:
         # حاول قراءة المفتاح من ملف إذا كان موجودًا
-        with open('.gitignore/key.key', 'rb') as key_file:
+        with open('.env/key.key', 'rb') as key_file:
             key = key_file.read()
     except FileNotFoundError:
         # إذا لم يتم العثور على الملف، قم بإنشاء مفتاح جديد وحفظه
         key = Fernet.generate_key()
-        with open('.gitignore/key.key', 'wb') as key_file:
+        with open('.env/key.key', 'wb') as key_file:
             key_file.write(key)
 
     return key
@@ -27,7 +27,7 @@ cipher_suite = Fernet(key)
 # قراءة وفك تشفير المتغيرات من الملف
 def read_decrypted_data():
     try:
-        with open('.gitignore/encrypted_data.txt', 'rb') as file:
+        with open('.env/encrypted_data.txt', 'rb') as file:
             encrypted_username = file.readline().strip()
             encrypted_password = file.readline().strip()
             encrypted_host = file.readline().strip()

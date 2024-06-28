@@ -15,7 +15,7 @@ from cryptography.fernet import Fernet
 
 # تحميل المفتاح
 def load_key():
-    with open('.gitignore/key_smtp.key', 'rb') as key_file:
+    with open('.env/key_smtp.key', 'rb') as key_file:
         key = key_file.read()
     return key
 
@@ -23,7 +23,7 @@ key = load_key()
 cipher_suite = Fernet(key)
 
 # قراءة وفك تشفير المعلومات
-with open('.gitignore/smtp_encrypted_data.txt', 'rb') as file:
+with open('.env/smtp_encrypted_data.txt', 'rb') as file:
     encrypted_sender_email = file.readline().strip()
     encrypted_receiver_email = file.readline().strip()
     encrypted_password = file.readline().strip()
